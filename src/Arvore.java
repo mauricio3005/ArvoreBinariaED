@@ -1,4 +1,3 @@
-package PACKAGE_NAME;
-
 public class Arvore {
+    private Node raiz;
 }
