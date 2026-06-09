@@ -78,50 +78,43 @@ public class Arvore {
             return atual;
     }
     
-    public void exibirEmOrdem() {
-    	exibirEmOrdemRec(raiz);
-    }
-    
-    private void exibirEmOrdemRec(Node atual) {
-    	if(atual != null) {
-    		exibirEmOrdemRec(atual.getFilhoEsquerda()); 
-    		System.out.println(atual.getLivro().getISBN()); 
-    		exibirEmOrdemRec(atual.getFilhoDireita());
-    		
-    	}
-    	
-    	
+    public String exibirEmOrdem() {
+        return exibirEmOrdemRec(raiz);
     }
 
-    public void exibirPreOrdem() {
-    	exibirPreOrdemRec(raiz);	
+    private String exibirEmOrdemRec(Node atual) {
+        if (atual == null) {
+            return "";
+        }
+        return exibirEmOrdemRec(atual.getFilhoEsquerda())
+             + atual.getLivro().toString() + "\n\n"
+             + exibirEmOrdemRec(atual.getFilhoDireita());
     }
-    
-    
-    private void exibirPreOrdemRec(Node atual) {
-    	if(atual != null) {
-    		System.out.println(atual.getLivro().getISBN());
-    		exibirPreOrdemRec(atual.getFilhoEsquerda());
-    		exibirPreOrdemRec(atual.getFilhoDireita());
-    		
-    	}
-    }
-    
-    
 
-    public void exibirPosOrdem() {
-    	exibirPosOrdemRec(raiz);
+    public String exibirPreOrdem() {
+        return exibirPreOrdemRec(raiz);
     }
-    
-    private void exibirPosOrdemRec(Node atual) {
-    	if(atual != null) {
-    		exibirPosOrdemRec(atual.getFilhoEsquerda());
-    		exibirPosOrdemRec(atual.getFilhoDireita());
-    		System.out.println(atual.getLivro().getISBN());
-    		
-    	}
-    	
-    	
+
+    private String exibirPreOrdemRec(Node atual) {
+        if (atual == null) {
+            return "";
+        }
+        return atual.getLivro().toString() + "\n\n"
+             + exibirPreOrdemRec(atual.getFilhoEsquerda())
+             + exibirPreOrdemRec(atual.getFilhoDireita());
+    }
+
+    public String exibirPosOrdem() {
+        return exibirPosOrdemRec(raiz);
+    }
+
+    private String exibirPosOrdemRec(Node atual) {
+        if (atual == null) {
+            return "";
+        }
+        return exibirPosOrdemRec(atual.getFilhoEsquerda())
+             + exibirPosOrdemRec(atual.getFilhoDireita())
+             + atual.getLivro().toString() + "\n\n";
     }
     
     
@@ -188,9 +181,5 @@ public class Arvore {
     
     return 1+Math.max(alturaEsquerda, alturaDireita);
     }
-   
-    
-    
-    
     
 }

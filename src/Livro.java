@@ -52,4 +52,9 @@ public class Livro {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
+
+    @Override
+    public String toString() {
+        return "ISBN: " + ISBN + "\nTítulo: " + titulo + "\nAutor: " + autor + "\nÁrea: " + area + "\nQuantidade: " + quantidade;
+    }
 }
