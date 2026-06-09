@@ -17,4 +17,30 @@ public class Node {
         this.filhoEsquerda = filhoEsquerda;
         this.filhoDireita = filhoDireita;
     }
+
+	public Livro getLivro() {
+		return livro;
+	}
+
+	public void setLivro(Livro livro) {
+		this.livro = livro;
+	}
+
+	public Node getFilhoDireita() {
+		return filhoDireita;
+	}
+
+	public void setFilhoDireita(Node filhoDireita) {
+		this.filhoDireita = filhoDireita;
+	}
+
+	public Node getFilhoEsquerda() {
+		return filhoEsquerda;
+	}
+
+	public void setFilhoEsquerda(Node filhoEsquerda) {
+		this.filhoEsquerda = filhoEsquerda;
+	}
+    
+    
 }
