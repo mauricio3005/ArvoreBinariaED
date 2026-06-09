@@ -90,13 +90,74 @@ public class Arvore {
     		
     	}
     	
+    	
     }
     
-    // mostrar livro com maior ISBN
-    // mostrar livro com menor ISBN
-    // mostrar quantidade de livros
-    // mostrar altura da arvore
-    // encerrar sistema
+    
+    public Livro maiorISBN() {
+    	if (raiz == null) {
+    		return null;
+    	}
+    	return maiorISBNRec(raiz);
+    	
+    	
+    }
+    
+    private Livro maiorISBNRec(Node atual) {
+    	if (atual.getFilhoDireita() == null) {
+    		return atual.getLivro();
+    	}
+    	return maiorISBNRec(atual.getFilhoDireita());
+    }
+    
+    
+
+    
+    public Livro menorISBN() {
+    	if (raiz == null) {
+    		return null;
+    	}
+    	return menorISBNRec(raiz); 
+    	
+    }
+    private Livro menorISBNRec(Node atual) {
+    	if (atual.getFilhoEsquerda() == null) {
+    		return atual.getLivro();
+    	}
+    	return menorISBNRec(atual.getFilhoEsquerda());
+    }
+
+    
+    public int qtdLivros() {
+    	return qtdLivrosRec(raiz);
+    }
+    	
+    private int qtdLivrosRec(Node atual) {
+    	if (atual  == null) {
+    		return 0;
+    	}
+    	
+    	return 1+ qtdLivrosRec(atual.getFilhoEsquerda())+ qtdLivrosRec(atual.getFilhoDireita()); 
+    }
+    
+    public int altura() {
+    	return alturaRec(raiz);
+    }
+    
+    private int alturaRec(Node atual) {
+    	if (atual == null) {
+    		return 0;
+    	}
+    int alturaEsquerda;
+    int alturaDireita;
+    
+    alturaEsquerda = alturaRec(atual.getFilhoEsquerda());
+    alturaDireita = alturaRec(atual.getFilhoDireita());
+    
+    return 1+Math.max(alturaEsquerda, alturaDireita);
+    }
+   
+    
     
     
     
