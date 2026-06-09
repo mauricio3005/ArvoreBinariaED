@@ -26,16 +26,16 @@ public class Arvore {
 
     
 
-    public Livro buscar(String isbn) {
+    public Node buscar(String isbn) {
     	return buscarRec(raiz, isbn);
     }
 
-    private Livro buscarRec(Node atual, String isbn) {
+    private Node buscarRec(Node atual, String isbn) {
     	if(atual == null) {
     		return null;
     	}
     	if(isbn.equals(atual.getLivro().getISBN())) {
-    		return atual.getLivro();
+    		return atual;
     	}
     	if(isbn.compareTo(atual.getLivro().getISBN()) < 0) {
     		return buscarRec(atual.getFilhoEsquerda(), isbn);
@@ -44,8 +44,39 @@ public class Arvore {
     	}
     }
     
-    // remover livro
-    
+    public void remover(String isbn){
+        raiz = removerRec(raiz,isbn);
+    }
+
+    private Node removerRec(Node atual, String isbn){
+        if(atual == null){
+            return null;
+        }
+        if(atual.getLivro().getISBN().equals(isbn)){
+            if(atual.getFilhoDireita() == null && atual.getFilhoEsquerda() == null){
+                return null;
+            }
+            else if(atual.getFilhoDireita() == null){
+                return atual.getFilhoEsquerda();
+            }
+            else if(atual.getFilhoEsquerda() == null){
+                return atual.getFilhoDireita();
+            }
+            else{
+                Node substituto = menorISBNRec(atual.getFilhoDireita());
+                atual.setLivro(substituto.getLivro());
+                atual.setFilhoDireita(removerRec(atual.getFilhoDireita(), substituto.getLivro().getISBN()));
+                return atual;
+
+            }
+        }
+            if(isbn.compareTo(atual.getLivro().getISBN()) < 0) {
+                atual.setFilhoEsquerda(removerRec(atual.getFilhoEsquerda(), isbn));
+            } else {
+                atual.setFilhoDireita(removerRec(atual.getFilhoDireita(), isbn));
+            }
+            return atual;
+    }
     
     public void exibirEmOrdem() {
     	exibirEmOrdemRec(raiz);
@@ -94,18 +125,18 @@ public class Arvore {
     }
     
     
-    public Livro maiorISBN() {
+    public Node maiorISBN() {
     	if (raiz == null) {
     		return null;
     	}
     	return maiorISBNRec(raiz);
-    	
-    	
+
+
     }
-    
-    private Livro maiorISBNRec(Node atual) {
+
+    private Node maiorISBNRec(Node atual) {
     	if (atual.getFilhoDireita() == null) {
-    		return atual.getLivro();
+    		return atual;
     	}
     	return maiorISBNRec(atual.getFilhoDireita());
     }
@@ -113,16 +144,17 @@ public class Arvore {
     
 
     
-    public Livro menorISBN() {
+    public Node menorISBN() {
     	if (raiz == null) {
     		return null;
     	}
-    	return menorISBNRec(raiz); 
-    	
+    	return menorISBNRec(raiz);
+
     }
-    private Livro menorISBNRec(Node atual) {
+
+    private Node menorISBNRec(Node atual) {
     	if (atual.getFilhoEsquerda() == null) {
-    		return atual.getLivro();
+    		return atual;
     	}
     	return menorISBNRec(atual.getFilhoEsquerda());
     }
