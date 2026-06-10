@@ -1,11 +1,11 @@
 public class Livro {
-    private String ISBN;
+    private int ISBN;
     private String titulo;
     private String autor;
     private String area;
     private int quantidade;
 
-    public Livro(String ISBN, String titulo, String autor, String area, int quantidade) {
+    public Livro(int ISBN, String titulo, String autor, String area, int quantidade) {
         this.ISBN = ISBN;
         this.titulo = titulo;
         this.autor = autor;
@@ -13,11 +13,11 @@ public class Livro {
         this.quantidade = quantidade;
     }
 
-    public String getISBN() {
+    public int getISBN() {
         return ISBN;
     }
 
-    public void setISBN(String ISBN) {
+    public void setISBN(int ISBN) {
         this.ISBN = ISBN;
     }
 

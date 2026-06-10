@@ -1,10 +1,18 @@
 import java.util.Scanner;
 
-public class Main {
+public class MainP {
     public static void main(String[] args) {
         Arvore arvore = new Arvore();
         Scanner scanner = new Scanner(System.in);
         int opcao;
+
+        arvore.inserir(new Livro(500, "Estruturas de Dados", "Thomas Cormen", "Computacao", 3));
+        arvore.inserir(new Livro(300, "Algoritmos", "Robert Sedgewick", "Computacao", 5));
+        arvore.inserir(new Livro(700, "Java Efetivo", "Joshua Bloch", "Programacao", 2));
+        arvore.inserir(new Livro(150, "Calculo Vol. 1", "James Stewart", "Matematica", 8));
+        arvore.inserir(new Livro(400, "Banco de Dados", "Ramez Elmasri", "Computacao", 4));
+        arvore.inserir(new Livro(600, "Redes de Computadores", "Andrew Tanenbaum", "Redes", 6));
+        arvore.inserir(new Livro(800, "Inteligencia Artificial", "Stuart Russell", "Computacao", 1));
 
         do {
             System.out.println("=============================");

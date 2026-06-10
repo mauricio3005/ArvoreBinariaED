@@ -16,9 +16,9 @@ public class Arvore {
     	if(atual == null) {
     		return new Node(livro);
     	}
-    	if(livro.getISBN().compareTo(atual.getLivro().getISBN()) < 0) {
+    	if(livro.getISBN() < atual.getLivro().getISBN()) {
     		atual.setFilhoEsquerda(inserirRec(atual.getFilhoEsquerda(), livro));
-    	}else if(livro.getISBN().compareTo(atual.getLivro().getISBN()) > 0) {
+    	}else if(livro.getISBN() > atual.getLivro().getISBN()) {
     		atual.setFilhoDireita(inserirRec(atual.getFilhoDireita(), livro));
     	}
     	return atual;
@@ -26,33 +26,33 @@ public class Arvore {
 
     
 
-    public Node buscar(String isbn) {
+    public Node buscar(int isbn) {
     	return buscarRec(raiz, isbn);
     }
 
-    private Node buscarRec(Node atual, String isbn) {
+    private Node buscarRec(Node atual, int isbn) {
     	if(atual == null) {
     		return null;
     	}
-    	if(isbn.equals(atual.getLivro().getISBN())) {
+    	if(isbn == atual.getLivro().getISBN()) {
     		return atual;
     	}
-    	if(isbn.compareTo(atual.getLivro().getISBN()) < 0) {
+    	if(isbn < atual.getLivro().getISBN()) {
     		return buscarRec(atual.getFilhoEsquerda(), isbn);
     	}else  {
     		return buscarRec(atual.getFilhoDireita(), isbn);
     	}
     }
     
-    public void remover(String isbn){
+    public void remover(int isbn){
         raiz = removerRec(raiz,isbn);
     }
 
-    private Node removerRec(Node atual, String isbn){
+    private Node removerRec(Node atual, int isbn){
         if(atual == null){
             return null;
         }
-        if(atual.getLivro().getISBN().equals(isbn)){
+        if(atual.getLivro().getISBN() == isbn){
             if(atual.getFilhoDireita() == null && atual.getFilhoEsquerda() == null){
                 return null;
             }
@@ -70,7 +70,7 @@ public class Arvore {
 
             }
         }
-            if(isbn.compareTo(atual.getLivro().getISBN()) < 0) {
+            if(isbn < atual.getLivro().getISBN()) {
                 atual.setFilhoEsquerda(removerRec(atual.getFilhoEsquerda(), isbn));
             } else {
                 atual.setFilhoDireita(removerRec(atual.getFilhoDireita(), isbn));
