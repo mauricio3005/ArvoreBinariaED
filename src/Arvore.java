@@ -128,6 +128,9 @@ public class Arvore {
     }
 
     private Node maiorISBNRec(Node atual) {
+    	if (atual == null) {
+    		return null;
+    	}
     	if (atual.getFilhoDireita() == null) {
     		return atual;
     	}
@@ -146,6 +149,9 @@ public class Arvore {
     }
 
     private Node menorISBNRec(Node atual) {
+    	if (atual == null) {
+    		return null;
+    	}
     	if (atual.getFilhoEsquerda() == null) {
     		return atual;
     	}

@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MainP {
@@ -31,50 +32,72 @@ public class MainP {
             System.out.println("0. Sair");
             System.out.println("=============================");
             System.out.print("Opção: ");
-            opcao = scanner.nextInt();
+            try {
+                opcao = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada inválida. Digite um número.");
+                scanner.nextLine();
+                opcao = -1;
+                continue;
+            }
             scanner.nextLine();
             System.out.println();
 
             switch (opcao) {
                 case 1:
-                    System.out.print("ISBN: ");
-                    int isbn = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.print("Título: ");
-                    String titulo = scanner.nextLine();
-                    System.out.print("Autor: ");
-                    String autor = scanner.nextLine();
-                    System.out.print("Área: ");
-                    String area = scanner.nextLine();
-                    System.out.print("Quantidade: ");
-                    int quantidade = scanner.nextInt();
-                    scanner.nextLine();
-                    arvore.inserir(new Livro(isbn, titulo, autor, area, quantidade));
-                    System.out.println("Livro inserido com sucesso.");
+                    try {
+                        System.out.print("ISBN: ");
+                        int isbn = scanner.nextInt();
+                        scanner.nextLine();
+                        System.out.print("Título: ");
+                        String titulo = scanner.nextLine();
+                        System.out.print("Autor: ");
+                        String autor = scanner.nextLine();
+                        System.out.print("Área: ");
+                        String area = scanner.nextLine();
+                        System.out.print("Quantidade: ");
+                        int quantidade = scanner.nextInt();
+                        scanner.nextLine();
+                        arvore.inserir(new Livro(isbn, titulo, autor, area, quantidade));
+                        System.out.println("Livro inserido com sucesso.");
+                    } catch (InputMismatchException e) {
+                        System.out.println("Entrada inválida. ISBN e quantidade devem ser números.");
+                        scanner.nextLine();
+                    }
                     break;
 
                 case 2:
-                    System.out.print("ISBN: ");
-                    int isbnBusca = scanner.nextInt();
-                    scanner.nextLine();
-                    Node resultado = arvore.buscar(isbnBusca);
-                    if (resultado == null) {
-                        System.out.println("Livro não encontrado.");
-                    } else {
-                        System.out.println("Livro encontrado:");
-                        System.out.println(resultado.getLivro());
+                    try {
+                        System.out.print("ISBN: ");
+                        int isbnBusca = scanner.nextInt();
+                        scanner.nextLine();
+                        Node resultado = arvore.buscar(isbnBusca);
+                        if (resultado == null) {
+                            System.out.println("Livro não encontrado.");
+                        } else {
+                            System.out.println("Livro encontrado:");
+                            System.out.println(resultado.getLivro());
+                        }
+                    } catch (InputMismatchException e) {
+                        System.out.println("Entrada inválida. ISBN deve ser um número.");
+                        scanner.nextLine();
                     }
                     break;
 
                 case 3:
-                    System.out.print("ISBN: ");
-                    int isbnRemover = scanner.nextInt();
-                    scanner.nextLine();
-                    if (arvore.buscar(isbnRemover) == null) {
-                        System.out.println("Livro não encontrado.");
-                    } else {
-                        arvore.remover(isbnRemover);
-                        System.out.println("Livro removido com sucesso.");
+                    try {
+                        System.out.print("ISBN: ");
+                        int isbnRemover = scanner.nextInt();
+                        scanner.nextLine();
+                        if (arvore.buscar(isbnRemover) == null) {
+                            System.out.println("Livro não encontrado.");
+                        } else {
+                            arvore.remover(isbnRemover);
+                            System.out.println("Livro removido com sucesso.");
+                        }
+                    } catch (InputMismatchException e) {
+                        System.out.println("Entrada inválida. ISBN deve ser um número.");
+                        scanner.nextLine();
                     }
                     break;
 

@@ -13,12 +13,7 @@ public class Node {
         this.filhoDireita = filhoDireita;
     }
 
-    public Node(Node filhoDireita, Node filhoEsquerda){
-        this.filhoEsquerda = filhoEsquerda;
-        this.filhoDireita = filhoDireita;
-    }
-
-	public Livro getLivro() {
+public Livro getLivro() {
 		return livro;
 	}
 
